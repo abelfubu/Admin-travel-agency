@@ -17,11 +17,12 @@ import { HeroComponent } from './common/hero/hero.component';
 import { ScrollDirective } from './scroll.directive';
 import { FooterComponent } from './common/footer/footer.component';
 import { CountdownComponent } from './common/countdown/countdown.component';
-import { ViajesFilterComponent } from './viajes-filter/viajes-filter.component';
+import { ViajesFilterComponent } from './viajes-list/viajes-filter/viajes-filter.component';
 
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { AsideComponent } from './common/aside/aside.component';
+import { ViajesTablaComponent } from './viajes-list/viajes-tabla/viajes-tabla.component';
 
 registerLocaleData(localeEs);
 
@@ -40,6 +41,7 @@ registerLocaleData(localeEs);
     CountdownComponent,
     ViajesFilterComponent,
     AsideComponent,
+    ViajesTablaComponent,
   ],
   imports: [
     BrowserModule,
