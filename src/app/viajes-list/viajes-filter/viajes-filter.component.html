@@ -1,0 +1,18 @@
+<mat-card class="mat-elevation-z8">
+  <form [formGroup]="form">
+    <mat-form-field>
+      <input
+        autocomplete="off"
+        matInput
+        formControlName="search"
+        type="text"
+        placeholder="Search"
+        color="primary"
+      />
+      <mat-hint *ngIf="form.controls.search.errors?.taco"
+        >No se permiten tacos!!</mat-hint
+      >
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </form>
+</mat-card>
