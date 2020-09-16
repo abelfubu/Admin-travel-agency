@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Viaje } from 'src/app/models';
@@ -17,12 +18,13 @@ export class ViajesTablaComponent implements OnInit, OnDestroy {
     'nombre',
     'destino',
     'tipo',
-    'symbol',
+    'rating',
     'actions',
   ];
   viajesList: Viaje[];
   viajesSub: Subscription;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<Viaje>;
 
   @Input() set filter(value: string) {
@@ -42,6 +44,7 @@ export class ViajesTablaComponent implements OnInit, OnDestroy {
       this.viajesList = viajes;
       this.dataSource = new MatTableDataSource<Viaje>(this.viajesList);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 
