@@ -1,0 +1,61 @@
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.blue {
+  background-color: rgb(0, 76, 255);
+}
+
+.isolate {
+  text-align: center;
+  // mix-blend-mode: multiply;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 4rem !important;
+  text-shadow: 0 2px 2px #232323;
+  margin-bottom: 72px;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+.slide-in {
+  animation: slide-in 500ms linear;
+}
+
+.slide-out {
+  animation: slide-out 500ms linear;
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slide-out {
+  0% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}

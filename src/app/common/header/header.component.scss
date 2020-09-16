@@ -1,0 +1,32 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 84vw;
+  color: #232323;
+  height: 72px;
+  padding: 0 8%;
+  position: fixed;
+  z-index: 10;
+  transition: all 250ms ease-in;
+
+  top: 0;
+
+  mat-icon {
+    transform: translateY(6px);
+  }
+
+  span {
+    cursor: pointer;
+
+    &:hover {
+      color: rgb(87, 127, 212);
+    }
+  }
+
+  .nav {
+    span:not(:last-child) {
+      margin-right: 16px;
+    }
+  }
+}

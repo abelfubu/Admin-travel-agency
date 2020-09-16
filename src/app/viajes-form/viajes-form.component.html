@@ -1,0 +1,34 @@
+<h3>{{ title }}</h3>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <app-input
+    label="Nombre"
+    inputType="text"
+    [control]="form.controls.nombre"
+  ></app-input>
+  <app-input
+    label="Destino"
+    inputType="text"
+    [control]="form.controls.destino"
+  ></app-input>
+  <app-input
+    label="Imagen"
+    inputType="text"
+    [control]="form.controls.img"
+  ></app-input>
+  <app-input
+    label="Duración"
+    inputType="number"
+    [control]="form.controls.duracion"
+  ></app-input>
+  <app-input
+    label="Plazas"
+    inputType="number"
+    [control]="form.controls.plazas"
+  ></app-input>
+  <app-input
+    label="tipo"
+    inputType="text"
+    [control]="form.controls.tipo"
+  ></app-input>
+  <button mat-raised-button>Enviar</button>
+</form>

@@ -1,0 +1,13 @@
+<div class="blue">
+  <div [appBgImg]="captions[index].img" [ngClass]="classes" class="hero">
+    <div class="isolate">
+      <h1>{{ captions[index].text }}</h1>
+      <button *ngIf="index === 2" mat-stroked-button color="primary">
+        Descubre nuestras ofertas!!!
+      </button>
+      <button *ngIf="index !== 2" mat-raised-button color="primary">
+        Descubre nuestras ofertas!!!
+      </button>
+    </div>
+  </div>
+</div>

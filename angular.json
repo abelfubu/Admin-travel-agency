@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "viajes-plus"
+    }
+  },
+  "defaultProject": "viajes-plus",
+  "cli": {
+    "analytics": false
+  }
 }

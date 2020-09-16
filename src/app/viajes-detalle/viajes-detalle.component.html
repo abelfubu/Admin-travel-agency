@@ -1,0 +1,10 @@
+<mat-dialog-content class="mat-typography" *ngIf="viaje">
+  <img [src]="viaje.img" [alt]="viaje.nombre" />
+  <H1 mat-dialog-title>{{ viaje?.nombre }}</H1>
+  <p>{{ viaje?.tipo }}</p>
+  <p>{{ viaje?.destino }}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button (click)="editarViaje(viaje)" mat-raised-button>Editar</button>
+  <button mat-raised-button color="warn">Borrar</button>
+</mat-dialog-actions>

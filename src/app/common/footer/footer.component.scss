@@ -1,0 +1,28 @@
+footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 64px 8%;
+  position: relative;
+
+  mat-list-item {
+    color: #232323;
+  }
+
+  i {
+    margin-right: 12px;
+  }
+
+  mat-icon {
+    color: #232323;
+    font-size: 5rem;
+    margin: auto;
+  }
+
+  p {
+    color: #232323;
+    font-size: 10px;
+    text-align: center;
+    position: absolute;
+    bottom: 2px;
+  }
+}
