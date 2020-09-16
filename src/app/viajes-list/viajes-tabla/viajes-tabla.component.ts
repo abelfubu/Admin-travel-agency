@@ -29,9 +29,15 @@ export class ViajesTablaComponent implements OnInit, OnDestroy {
 
   @Input() set filter(value: string) {
     this.dataSource = new MatTableDataSource<Viaje>(
-      this.viajesList.filter((viaje) =>
-        viaje.nombre.toLowerCase().startsWith(value.trim().toLowerCase())
-      )
+      this.viajesList.filter((viaje) => {
+        const val = value.trim().toLowerCase();
+        const { nombre, destino, tipo } = viaje;
+        return (
+          this.filtrify(nombre).startsWith(val) ||
+          this.filtrify(destino).startsWith(val) ||
+          this.filtrify(tipo).startsWith(val)
+        );
+      })
     );
     this.dataSource.paginator = this.paginator;
   }
@@ -50,6 +56,14 @@ export class ViajesTablaComponent implements OnInit, OnDestroy {
 
   mostrarViaje(id: number): void {
     this.dialog.open(ViajesDetalleComponent, { data: { id } });
+  }
+
+  filtrify(value: string): string {
+    return value
+      .trim()
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
   }
 
   ngOnDestroy(): void {
