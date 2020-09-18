@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ConfirmComponent } from 'src/app/common/confirm/confirm.component';
+
 import { Viaje } from 'src/app/models';
 import { ViajesDetalleComponent } from '../../viajes-detalle/viajes-detalle.component';
 
@@ -35,5 +37,9 @@ export class ViajesTablaComponent implements OnInit {
 
   mostrarViaje(id: number): void {
     this.dialog.open(ViajesDetalleComponent, { data: { id } });
+  }
+
+  borrarViaje(id: number): void {
+    this.dialog.open(ConfirmComponent, { data: { id } });
   }
 }
