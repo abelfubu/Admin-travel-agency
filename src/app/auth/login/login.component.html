@@ -1,0 +1,16 @@
+<mat-card>
+  <h3>Login</h3>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <app-input
+      label="Email"
+      inputType="email"
+      [control]="loginForm.controls.email"
+    ></app-input>
+    <app-input
+      label="Password"
+      inputType="password"
+      [control]="loginForm.controls.password"
+    ></app-input>
+    <button mat-raised-button>Login</button>
+  </form>
+</mat-card>

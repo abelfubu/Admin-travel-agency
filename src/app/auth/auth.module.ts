@@ -1,21 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ViajesRoutingModule } from './viajes-routing.module';
+import { AuthRoutingModule } from './auth-routing.module';
+import { LoginComponent } from './login/login.component';
 import { InputComponent } from '../common/input/input.component';
-import { ViajesFormComponent } from './viajes-form/viajes-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngMatModule } from '../ang-mat.module';
 import { SharedModule } from '../common/common.module';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-  declarations: [ViajesFormComponent],
+  declarations: [LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
-    ViajesRoutingModule,
+    AuthRoutingModule,
     ReactiveFormsModule,
     AngMatModule,
     SharedModule,
   ],
 })
-export class ViajesModule {}
+export class AuthModule {}
