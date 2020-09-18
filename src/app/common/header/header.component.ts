@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ViajesFormComponent } from 'src/app/viajes-form/viajes-form.component';
+import { ViajesFormComponent } from 'src/app/viajes/viajes-form/viajes-form.component';
 
 @Component({
   selector: 'app-header',

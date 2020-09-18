@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Viaje } from 'src/app/models';
-import { ViajesDetalleComponent } from 'src/app/viajes-detalle/viajes-detalle.component';
+import { ViajesDetalleComponent } from '../../viajes-detalle/viajes-detalle.component';
 
 @Component({
   selector: 'app-viajes-tabla',

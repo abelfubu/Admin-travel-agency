@@ -1,8 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { map } from 'rxjs/operators';
-import { Viaje } from '../models/Viaje';
-import { ViajesService } from '../services/viajes.service';
+import { Viaje } from '../../models/Viaje';
+import { ViajesService } from '../viajes.service';
 import { ViajesFormComponent } from '../viajes-form/viajes-form.component';
 
 @Component({
