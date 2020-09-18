@@ -1,17 +1,2 @@
-<!-- <div class="main">
-  <div
-    class="overflow-hidden"
-    *ngFor="let viaje of viajesList; let i = index"
-    [ngClass]="randomSize(i)"
-  >
-    <div (click)="mostrarViaje(viaje.id)" class="img" [appBgImg]="viaje.img">
-      <div class="header">
-        <h3>{{ viaje.nombre }}</h3>
-        <p>{{ viaje.tipo }}</p>
-      </div>
-      <p class="footer">{{ viaje.destino }}</p>
-    </div>
-  </div>
-</div> -->
 <app-viajes-filter (filterResult)="filterList($event)"></app-viajes-filter>
-<app-viajes-tabla [filter]="filterValue"></app-viajes-tabla>
+<app-viajes-tabla [viajesList]="viajesList"></app-viajes-tabla>

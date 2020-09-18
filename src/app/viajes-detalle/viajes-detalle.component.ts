@@ -22,7 +22,6 @@ export class ViajesDetalleComponent implements OnInit {
   ngOnInit(): void {
     this.vs
       .getOne(this.passedData.id)
-      // .pipe(map((response) => response[0]))
       .subscribe((response) => (this.viaje = response));
   }
 

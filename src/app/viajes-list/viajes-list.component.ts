@@ -1,24 +1,47 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Viaje } from '../models';
+import { ViajesService } from '../services/viajes.service';
 
 @Component({
   selector: 'app-viajes-list',
   templateUrl: './viajes-list.component.html',
   styleUrls: ['./viajes-list.component.scss'],
 })
-export class ViajesListComponent {
-  filterValue: string;
-  constructor() {}
+export class ViajesListComponent implements OnInit, OnDestroy {
+  viajesList: Viaje[];
+  viajesSub: Subscription;
+  constructor(private vs: ViajesService) {}
+
+  ngOnInit(): void {
+    this.vs.getAll();
+    this.viajesSub = this.vs.viajes.subscribe((viajes: Viaje[]) => {
+      this.viajesList = viajes;
+      console.log(this.viajesList);
+    });
+  }
 
   filterList(value: string): void {
-    this.filterValue = value;
+    this.viajesList?.filter((viaje) => {
+      const val = value.trim().toLowerCase();
+      const { nombre, destino, tipo } = viaje;
+      return (
+        this.filtrify(nombre).startsWith(val) ||
+        this.filtrify(destino).startsWith(val) ||
+        this.filtrify(tipo).startsWith(val)
+      );
+    });
   }
-  // randomSize(index: number): string[] {
-  //   const classes = [];
-  //   if (index % 7 === 0) {
-  //     classes.push('horizontal');
-  //   } else if (index % 5 === 0) {
-  //     classes.push('vertical');
-  //   }
-  //   return classes;
-  // }
+
+  filtrify(value: string): string {
+    return value
+      .trim()
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+  }
+
+  ngOnDestroy(): void {
+    this.viajesSub.unsubscribe();
+  }
 }
