@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Viaje } from '../models';
-import { ViajesService } from '../services/viajes.service';
+import { Viaje } from '../../models';
+import { ViajesService } from '../viajes.service';
 
 @Component({
   selector: 'app-viajes-list',

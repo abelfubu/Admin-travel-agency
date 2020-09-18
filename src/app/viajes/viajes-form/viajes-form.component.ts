@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Viaje } from '../models';
-import { ViajesService } from '../services/viajes.service';
+import { Viaje } from '../../models';
+import { ViajesService } from '../viajes.service';
 
 @Component({
   selector: 'app-viajes-form',
