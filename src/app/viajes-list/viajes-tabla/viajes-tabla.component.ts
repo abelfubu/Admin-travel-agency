@@ -29,7 +29,7 @@ export class ViajesTablaComponent implements OnInit, OnDestroy {
 
   @Input() set filter(value: string) {
     this.dataSource = new MatTableDataSource<Viaje>(
-      this.viajesList.filter((viaje) => {
+      this.viajesList?.filter((viaje) => {
         const val = value.trim().toLowerCase();
         const { nombre, destino, tipo } = viaje;
         return (

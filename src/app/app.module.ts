@@ -23,6 +23,7 @@ import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { AsideComponent } from './common/aside/aside.component';
 import { ViajesTablaComponent } from './viajes-list/viajes-tabla/viajes-tabla.component';
+import { LogoComponent } from './common/logo/logo.component';
 
 registerLocaleData(localeEs);
 
@@ -42,6 +43,7 @@ registerLocaleData(localeEs);
     ViajesFilterComponent,
     AsideComponent,
     ViajesTablaComponent,
+    LogoComponent,
   ],
   imports: [
     BrowserModule,
