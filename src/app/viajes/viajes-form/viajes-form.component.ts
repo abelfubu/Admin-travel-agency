@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Viaje } from '../../models';
 import { ViajesService } from '../viajes.service';
 
@@ -16,6 +17,7 @@ export class ViajesFormComponent implements OnInit {
     private fb: FormBuilder,
     private vs: ViajesService,
     private dialog: MatDialog,
+    private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) private passedData: { viaje: Viaje }
   ) {
     if (this.passedData) {
@@ -61,6 +63,7 @@ export class ViajesFormComponent implements OnInit {
           console.log(response);
           this.dialog.closeAll();
           this.vs.getAll();
+          this.openSnackBar('Viaje actualizado');
         });
     } else {
       this.vs
@@ -74,7 +77,14 @@ export class ViajesFormComponent implements OnInit {
           console.log(response);
           this.dialog.closeAll();
           this.vs.getAll();
+          this.openSnackBar('Viaje creado con éxito');
         });
     }
+  }
+
+  openSnackBar(message: string): void {
+    this.snackBar.open(message, 'Vale', {
+      duration: 2000,
+    });
   }
 }

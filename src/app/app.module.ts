@@ -5,37 +5,36 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BgImgDirective } from './pipes/bg-img.directive';
 import { HeaderComponent } from './common/header/header.component';
 import { AngMatModule } from './ang-mat.module';
-import { HeroComponent } from './common/hero/hero.component';
-import { ScrollDirective } from './pipes/scroll.directive';
+import { ScrollDirective } from './directives/scroll.directive';
 import { FooterComponent } from './common/footer/footer.component';
 import { CountdownComponent } from './common/countdown/countdown.component';
 
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { AsideComponent } from './common/aside/aside.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 registerLocaleData(localeEs);
 
 @NgModule({
   declarations: [
     AppComponent,
-    BgImgDirective,
     HeaderComponent,
-    HeroComponent,
+
     ScrollDirective,
     FooterComponent,
     CountdownComponent,
     AsideComponent,
   ],
   imports: [
+    AngMatModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
-    AngMatModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent],

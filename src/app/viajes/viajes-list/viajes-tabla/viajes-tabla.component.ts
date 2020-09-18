@@ -1,12 +1,16 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ConfirmComponent } from 'src/app/common/confirm/confirm.component';
 
 import { Viaje } from 'src/app/models';
-import { ViajesDetalleComponent } from '../../viajes-detalle/viajes-detalle.component';
 
 @Component({
   selector: 'app-viajes-tabla',
@@ -31,15 +35,11 @@ export class ViajesTablaComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  constructor(private dialog: MatDialog) {}
+  @Output() mostrar = new EventEmitter<number>();
+  @Output() borrar = new EventEmitter<number>();
+  @Output() editar = new EventEmitter<number>();
+
+  constructor() {}
 
   ngOnInit(): void {}
-
-  mostrarViaje(id: number): void {
-    this.dialog.open(ViajesDetalleComponent, { data: { id } });
-  }
-
-  borrarViaje(id: number): void {
-    this.dialog.open(ConfirmComponent, { data: { id } });
-  }
 }

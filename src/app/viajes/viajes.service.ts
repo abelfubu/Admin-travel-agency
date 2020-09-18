@@ -24,6 +24,10 @@ export class ViajesService {
   }
 
   updateOne(viaje: Viaje): Observable<Viaje> {
-    return this.http.put<Viaje>(this.url, viaje);
+    return this.http.put<Viaje>(this.url + viaje.id, viaje);
+  }
+
+  deleteOne(id: number): Observable<Viaje> {
+    return this.http.delete<Viaje>(this.url + id);
   }
 }

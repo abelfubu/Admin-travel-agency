@@ -30,5 +30,8 @@
     inputType="text"
     [control]="form.controls.tipo"
   ></app-input>
-  <button mat-raised-button>Enviar</button>
+  <mat-dialog-actions>
+    <button mat-button>Enviar</button>
+    <button mat-button color="warn" [mat-dialog-close]>Cancelar</button>
+  </mat-dialog-actions>
 </form>
