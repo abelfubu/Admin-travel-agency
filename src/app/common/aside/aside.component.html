@@ -1,9 +1,11 @@
-<mat-selection-list [multiple]="false">
-  <mat-list-option
-    *ngFor="let destination of destinations"
-    [value]="destination"
-    routerLink="/viajes"
-  >
-    {{ destination }}
-  </mat-list-option>
-</mat-selection-list>
+<div class="panel">
+  <mat-selection-list [multiple]="false">
+    <mat-list-option
+      *ngFor="let destination of destinations"
+      [value]="destination"
+      routerLink="/viajes"
+    >
+      {{ destination }}
+    </mat-list-option>
+  </mat-selection-list>
+</div>

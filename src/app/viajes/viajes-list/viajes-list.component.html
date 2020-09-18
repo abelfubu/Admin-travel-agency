@@ -1,2 +1,7 @@
 <app-viajes-filter (filterResult)="filterList($event)"></app-viajes-filter>
-<app-viajes-tabla [viajesList]="viajesFiltered"></app-viajes-tabla>
+<app-viajes-tabla
+  [viajesList]="viajesFiltered"
+  (mostrar)="mostrarViaje($event)"
+  (borrar)="borrarViaje($event)"
+  (editar)="editarViaje($event)"
+></app-viajes-tabla>

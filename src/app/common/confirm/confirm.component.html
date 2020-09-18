@@ -1,1 +1,10 @@
-<p>confirm works!</p>
+<h1 mat-dialog-title>Estas seguro!</h1>
+<div mat-dialog-content>
+  <p>Si borras el viaje no hay forma posible de volver atrás</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false">No Gracias</button>
+  <button mat-button color="warn" [mat-dialog-close]="true" cdkFocusInitial>
+    Vale
+  </button>
+</div>

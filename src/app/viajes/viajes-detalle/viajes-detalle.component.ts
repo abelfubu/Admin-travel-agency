@@ -1,8 +1,9 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Viaje } from '../../models/Viaje';
 import { ViajesService } from '../viajes.service';
 import { ViajesFormComponent } from '../viajes-form/viajes-form.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-viajes-detalle',
@@ -15,17 +16,20 @@ export class ViajesDetalleComponent implements OnInit {
   constructor(
     private vs: ViajesService,
     private dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) private passedData: { id: number }
+    private route: ActivatedRoute // @Inject(MAT_DIALOG_DATA) private passedData: { id: number }
   ) {}
 
   ngOnInit(): void {
-    this.vs
-      .getOne(this.passedData.id)
-      .subscribe((response) => (this.viaje = response));
+    this.route.url.subscribe((id) => {
+      console.log(id);
+      this.vs.getOne(+id).subscribe((response) => {
+        this.viaje = response;
+        console.log(response);
+      });
+    });
   }
 
   editarViaje(viaje: Viaje): void {
-    this.dialog.closeAll();
     this.dialog.open(ViajesFormComponent, { data: { viaje }, width: '75%' });
   }
 }
