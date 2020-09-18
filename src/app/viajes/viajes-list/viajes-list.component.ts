@@ -9,6 +9,7 @@ import { ViajesService } from '../viajes.service';
   styleUrls: ['./viajes-list.component.scss'],
 })
 export class ViajesListComponent implements OnInit, OnDestroy {
+  viajesFiltered: Viaje[];
   viajesList: Viaje[];
   viajesSub: Subscription;
   constructor(private vs: ViajesService) {}
@@ -16,13 +17,13 @@ export class ViajesListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.vs.getAll();
     this.viajesSub = this.vs.viajes.subscribe((viajes: Viaje[]) => {
+      this.viajesFiltered = viajes;
       this.viajesList = viajes;
-      console.log(this.viajesList);
     });
   }
 
   filterList(value: string): void {
-    this.viajesList?.filter((viaje) => {
+    this.viajesFiltered = this.viajesList?.filter((viaje) => {
       const val = value.trim().toLowerCase();
       const { nombre, destino, tipo } = viaje;
       return (

@@ -34,8 +34,6 @@ registerLocaleData(localeEs);
     BgImgDirective,
     HeaderComponent,
     ViajesDetalleComponent,
-    ViajesFormComponent,
-    InputComponent,
     HeroComponent,
     ScrollDirective,
     FooterComponent,
