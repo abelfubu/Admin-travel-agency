@@ -1,11 +1,9 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Subscription } from 'rxjs';
 import { Viaje } from 'src/app/models';
-import { ViajesService } from 'src/app/services/viajes.service';
 import { ViajesDetalleComponent } from 'src/app/viajes-detalle/viajes-detalle.component';
 
 @Component({
@@ -13,7 +11,7 @@ import { ViajesDetalleComponent } from 'src/app/viajes-detalle/viajes-detalle.co
   templateUrl: './viajes-tabla.component.html',
   styleUrls: ['./viajes-tabla.component.scss'],
 })
-export class ViajesTablaComponent implements OnInit, OnDestroy {
+export class ViajesTablaComponent implements OnInit {
   displayedColumns: string[] = [
     'nombre',
     'destino',
@@ -21,52 +19,21 @@ export class ViajesTablaComponent implements OnInit, OnDestroy {
     'rating',
     'actions',
   ];
-  viajesList: Viaje[];
-  viajesSub: Subscription;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<Viaje>;
-
-  @Input() set filter(value: string) {
-    this.dataSource = new MatTableDataSource<Viaje>(
-      this.viajesList?.filter((viaje) => {
-        const val = value.trim().toLowerCase();
-        const { nombre, destino, tipo } = viaje;
-        return (
-          this.filtrify(nombre).startsWith(val) ||
-          this.filtrify(destino).startsWith(val) ||
-          this.filtrify(tipo).startsWith(val)
-        );
-      })
-    );
+  @Input() set viajesList(value: Viaje[]) {
+    this.dataSource = new MatTableDataSource<Viaje>(value);
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-  constructor(private dialog: MatDialog, private vs: ViajesService) {}
+  constructor(private dialog: MatDialog) {}
 
-  ngOnInit(): void {
-    this.vs.getAll();
-    this.viajesSub = this.vs.viajes.subscribe((viajes: Viaje[]) => {
-      this.viajesList = viajes;
-      this.dataSource = new MatTableDataSource<Viaje>(this.viajesList);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
-  }
+  ngOnInit(): void {}
 
   mostrarViaje(id: number): void {
     this.dialog.open(ViajesDetalleComponent, { data: { id } });
-  }
-
-  filtrify(value: string): string {
-    return value
-      .trim()
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '');
-  }
-
-  ngOnDestroy(): void {
-    this.viajesSub.unsubscribe();
   }
 }
