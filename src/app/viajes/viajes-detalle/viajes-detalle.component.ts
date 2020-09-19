@@ -23,6 +23,18 @@ export class ViajesDetalleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.cargarViaje();
+  }
+
+  editarViaje(viaje: Viaje): void {
+    const dialogRef = this.dialog.open(ViajesFormComponent, {
+      data: { viaje },
+      width: '75%',
+    });
+    dialogRef.afterClosed().subscribe((x) => this.cargarViaje());
+  }
+
+  cargarViaje(): void {
     this.route.url.subscribe((id) => {
       console.log(id);
       this.vs.getOne(+id).subscribe((response) => {
@@ -30,10 +42,6 @@ export class ViajesDetalleComponent implements OnInit {
         console.log(response);
       });
     });
-  }
-
-  editarViaje(viaje: Viaje): void {
-    this.dialog.open(ViajesFormComponent, { data: { viaje }, width: '75%' });
   }
 
   borrarViaje(id: number): void {

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Viaje } from '../models/Viaje';
 
 @Injectable({ providedIn: 'root' })
@@ -12,6 +13,7 @@ export class ViajesService {
   getAll(): void {
     this.http
       .get<Viaje[]>(this.url)
+      .pipe(map((viajes) => viajes.map((viaje) => new Viaje(viaje))))
       .subscribe((response) => this.viajes.next(response));
   }
 

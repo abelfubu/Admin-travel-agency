@@ -32,15 +32,17 @@ export class ViajesListComponent implements OnInit, OnDestroy {
   }
 
   filterList(value: string): void {
-    this.viajesFiltered = this.viajesList?.filter((viaje) => {
-      const val = value.trim().toLowerCase();
-      const { nombre, destino, tipo } = viaje;
-      return (
-        this.filtrify(nombre).startsWith(val) ||
-        this.filtrify(destino).startsWith(val) ||
-        this.filtrify(tipo).startsWith(val)
-      );
-    });
+    if (value) {
+      this.viajesFiltered = this.viajesList?.filter((viaje) => {
+        const val = value.trim().toLowerCase();
+        const { nombre, destino, tipo } = viaje;
+        return (
+          this.filtrify(nombre).startsWith(val) ||
+          this.filtrify(destino).startsWith(val) ||
+          this.filtrify(tipo).startsWith(val)
+        );
+      });
+    }
   }
 
   filtrify(value: string): string {
