@@ -52,7 +52,7 @@ export class ViajesFormComponent implements OnInit {
       const { id, color, estado } = this.passedData.viaje;
       this.vs
         .updateOne({ ...this.form.value, id, color, estado })
-        .subscribe((response) => {
+        .subscribe(() => {
           this.vs.getAll();
           this.dialog.closeAll();
           this.vui.snackBarUI('Viaje actualizado');
@@ -64,7 +64,7 @@ export class ViajesFormComponent implements OnInit {
           color: '#232323',
           estado: 1,
         })
-        .subscribe((response) => {
+        .subscribe(() => {
           this.vs.getAll();
           this.dialog.closeAll();
           this.vui.snackBarUI('Viaje creado con éxito');
