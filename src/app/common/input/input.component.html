@@ -1,4 +1,16 @@
 <mat-form-field>
   <mat-label>{{ label }}</mat-label>
   <input matInput [formControl]="control" [type]="inputType" />
+  <mat-error *ngIf="control.errors?.required"
+    >El campo es obligatorio</mat-error
+  >
+  <mat-error *ngIf="control.errors?.email">Introduce un email válido</mat-error>
+  <mat-error *ngIf="control.errors?.max"
+    >El campo tiene que tener como mínimo
+    {{ control.errors.max.max }} caracteres</mat-error
+  >
+  <mat-error *ngIf="control.errors?.min"
+    >El campo tiene que tener como mínimo
+    {{ control.errors.min.min }} caracteres</mat-error
+  >
 </mat-form-field>

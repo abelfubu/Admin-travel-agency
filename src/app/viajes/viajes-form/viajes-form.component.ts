@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Viaje } from '../../models';
 import { ViajesUIService } from '../viajes-ui.service';
@@ -20,41 +20,28 @@ export class ViajesFormComponent implements OnInit {
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) private passedData: { viaje: Viaje }
   ) {
+    this.form = fb.group({
+      nombre: ['', Validators.required],
+      destino: ['', Validators.required],
+      duracion: ['', Validators.min(5)],
+      img: [''],
+      plazas: ['', Validators.min(5)],
+      rating: [0, Validators.max(5)],
+      tipo: [''],
+    });
+  }
+
+  ngOnInit(): void {
     if (this.passedData) {
-      const {
-        nombre,
-        destino,
-        duracion,
-        img,
-        plazas,
-        rating,
-        tipo,
-      } = this.passedData.viaje;
-      this.form = fb.group({
-        nombre: [nombre],
-        destino: [destino],
-        duracion: [duracion],
-        img: [img],
-        plazas: [plazas],
-        rating: [rating],
-        tipo: [tipo],
-      });
-    } else {
-      this.form = fb.group({
-        nombre: [''],
-        destino: [''],
-        duracion: [''],
-        img: [''],
-        plazas: [''],
-        rating: [0],
-        tipo: [''],
-      });
+      this.form.patchValue(this.passedData.viaje);
     }
   }
 
-  ngOnInit(): void {}
-
   onSubmit(): void {
+    if (this.form.invalid) {
+      return;
+    }
+
     if (this.passedData) {
       const { id, color, estado, rating } = this.passedData.viaje;
       this.vs
