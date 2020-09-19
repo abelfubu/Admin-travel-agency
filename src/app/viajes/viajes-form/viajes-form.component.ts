@@ -13,6 +13,7 @@ import { ViajesService } from '../viajes.service';
 export class ViajesFormComponent implements OnInit {
   form: FormGroup;
   title = 'Nuevo Viaje';
+  rating = 0;
   constructor(
     fb: FormBuilder,
     private vs: ViajesService,
@@ -34,7 +35,12 @@ export class ViajesFormComponent implements OnInit {
   ngOnInit(): void {
     if (this.passedData) {
       this.form.patchValue(this.passedData.viaje);
+      this.rating = this.passedData.viaje.rating;
     }
+  }
+
+  setRating(rating: number): void {
+    this.form.controls.rating.setValue(rating);
   }
 
   onSubmit(): void {
@@ -43,11 +49,10 @@ export class ViajesFormComponent implements OnInit {
     }
 
     if (this.passedData) {
-      const { id, color, estado, rating } = this.passedData.viaje;
+      const { id, color, estado } = this.passedData.viaje;
       this.vs
-        .updateOne({ ...this.form.value, id, color, estado, rating })
+        .updateOne({ ...this.form.value, id, color, estado })
         .subscribe((response) => {
-          console.log(response);
           this.vs.getAll();
           this.dialog.closeAll();
           this.vui.snackBarUI('Viaje actualizado');
@@ -58,10 +63,8 @@ export class ViajesFormComponent implements OnInit {
           ...this.form.value,
           color: '#232323',
           estado: 1,
-          rating: 3,
         })
         .subscribe((response) => {
-          console.log(response);
           this.vs.getAll();
           this.dialog.closeAll();
           this.vui.snackBarUI('Viaje creado con éxito');

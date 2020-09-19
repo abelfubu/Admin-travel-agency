@@ -15,10 +15,10 @@ export class ViajesDetalleComponent implements OnInit {
   viaje: Viaje;
 
   constructor(
+    private router: Router,
     private vs: ViajesService,
     private dialog: MatDialog,
     private vui: ViajesUIService,
-    private router: Router,
     private route: ActivatedRoute // @Inject(MAT_DIALOG_DATA) private passedData: { id: number }
   ) {}
 
@@ -35,11 +35,9 @@ export class ViajesDetalleComponent implements OnInit {
   }
 
   cargarViaje(): void {
-    this.route.url.subscribe((id) => {
-      console.log(id);
-      this.vs.getOne(+id).subscribe((response) => {
+    this.route.params.subscribe((param) => {
+      this.vs.getOne(param.id).subscribe((response) => {
         this.viaje = response;
-        console.log(response);
       });
     });
   }

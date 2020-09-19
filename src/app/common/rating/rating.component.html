@@ -1,0 +1,6 @@
+<mat-icon
+  *ngFor="let star of stars; let i = index"
+  [ngClass]="currentRating > i ? 'material-icons' : 'material-icons-outlined'"
+  (click)="setRating(i)"
+  >grade</mat-icon
+>

@@ -22,7 +22,6 @@ registerLocaleData(localeEs);
   declarations: [
     AppComponent,
     HeaderComponent,
-
     ScrollDirective,
     FooterComponent,
     CountdownComponent,

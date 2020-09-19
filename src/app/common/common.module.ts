@@ -7,6 +7,7 @@ import { ConfirmComponent } from './confirm/confirm.component';
 import { LogoComponent } from './logo/logo.component';
 import { BgImgDirective } from '../directives/bg-img.directive';
 import { HeroComponent } from './hero/hero.component';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HeroComponent } from './hero/hero.component';
     LogoComponent,
     BgImgDirective,
     HeroComponent,
+    RatingComponent,
   ],
   imports: [CommonModule, AngMatModule, ReactiveFormsModule],
   exports: [
@@ -23,6 +25,7 @@ import { HeroComponent } from './hero/hero.component';
     LogoComponent,
     BgImgDirective,
     HeroComponent,
+    RatingComponent,
   ],
 })
 export class SharedModule {}

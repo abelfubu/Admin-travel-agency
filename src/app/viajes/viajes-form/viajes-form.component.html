@@ -30,6 +30,11 @@
     inputType="text"
     [control]="form.controls.tipo"
   ></app-input>
+  <app-rating
+    [currentRating]="form.controls.rating.value"
+    [editable]="true"
+    (newRating)="setRating($event)"
+  ></app-rating>
   <mat-dialog-actions>
     <button mat-button>Enviar</button>
     <button mat-button color="warn" [mat-dialog-close]>Cancelar</button>
