@@ -18,7 +18,9 @@ export class ViajesService {
   }
 
   getOne(id: number): Observable<Viaje> {
-    return this.http.get<Viaje>(this.url + id);
+    return this.http
+      .get<Viaje>(this.url + id)
+      .pipe(map((viaje) => new Viaje(viaje)));
   }
 
   addOne(viaje: Viaje): Observable<Viaje> {
@@ -26,6 +28,7 @@ export class ViajesService {
   }
 
   updateOne(viaje: Viaje): Observable<Viaje> {
+    console.log(viaje);
     return this.http.put<Viaje>(this.url + viaje.id, viaje);
   }
 

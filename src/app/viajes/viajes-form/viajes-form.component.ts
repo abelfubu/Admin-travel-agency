@@ -14,6 +14,11 @@ export class ViajesFormComponent implements OnInit {
   form: FormGroup;
   title = 'Nuevo Viaje';
   rating = 0;
+  estados = [
+    { value: 1, text: 'Abierto' },
+    { value: 2, text: 'Cerrado' },
+    { value: 3, text: 'Pendiente' },
+  ];
   constructor(
     fb: FormBuilder,
     private vs: ViajesService,
@@ -29,6 +34,7 @@ export class ViajesFormComponent implements OnInit {
       plazas: ['', Validators.min(5)],
       rating: [0, Validators.max(5)],
       tipo: [''],
+      estado: [null],
     });
   }
 
@@ -47,22 +53,18 @@ export class ViajesFormComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-
     if (this.passedData) {
-      const { id, color, estado } = this.passedData.viaje;
-      this.vs
-        .updateOne({ ...this.form.value, id, color, estado })
-        .subscribe(() => {
-          this.vs.getAll();
-          this.dialog.closeAll();
-          this.vui.snackBarUI('Viaje actualizado');
-        });
+      const { id, color } = this.passedData.viaje;
+      this.vs.updateOne({ ...this.form.value, id, color }).subscribe(() => {
+        this.vs.getAll();
+        this.dialog.closeAll();
+        this.vui.snackBarUI('Viaje actualizado');
+      });
     } else {
       this.vs
         .addOne({
           ...this.form.value,
           color: '#232323',
-          estado: 1,
         })
         .subscribe(() => {
           this.vs.getAll();

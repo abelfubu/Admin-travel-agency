@@ -1,61 +1,38 @@
-<ng-container *ngIf="viaje">
+<div class="container" *ngIf="viaje">
   <div class="bg-img">
     <div class="img" [appBgImg]="viaje.img"></div>
   </div>
 
   <div class="content">
-    <h1>{{ viaje.nombre }}</h1>
-    <app-rating [currentRating]="viaje.rating"></app-rating>
-
-    <mat-accordion class="example-headers-align" multi>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title> Personal data </mat-panel-title>
-          <mat-panel-description>
-            Type your name and age
-            <mat-icon>account_circle</mat-icon>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-
-        <mat-form-field>
-          <mat-label>First name</mat-label>
-          <input matInput />
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Age</mat-label>
-          <input matInput type="number" min="1" />
-        </mat-form-field>
-      </mat-expansion-panel>
-      <mat-expansion-panel disabled>
-        <mat-expansion-panel-header>
-          <mat-panel-title> Destination </mat-panel-title>
-          <mat-panel-description>
-            Type the country name
-            <mat-icon>map</mat-icon>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-
-        <mat-form-field>
-          <mat-label>Country</mat-label>
-          <input matInput />
-        </mat-form-field>
-      </mat-expansion-panel>
-
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title> Day of the trip </mat-panel-title>
-          <mat-panel-description>
-            Inform the date you wish to travel
-            <mat-icon>date_range</mat-icon>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-      </mat-expansion-panel>
-    </mat-accordion>
-
+    <div class="header">
+      <h1>{{ viaje.nombre }}</h1>
+      <p>{{ viaje.tipo }}</p>
+    </div>
+    <hr />
+    <div class="subheader">
+      <app-rating [currentRating]="viaje.rating"></app-rating>
+      <mat-icon class="material-icons">{{
+        viaje.estado === 2 ? "lock" : "lock_open"
+      }}</mat-icon>
+    </div>
+    <div class="text">
+      <h3>
+        <strong>{{ viaje.destino }}</strong>
+      </h3>
+      <p>Plazas {{ viaje.plazas }}</p>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore sequi
+        illum distinctio rerum voluptate architecto suscipit inventore
+        necessitatibus temporibus quisquam amet laudantium possimus id, vel
+        veniam maiores error tenetur culpa nam odit. Hic, nostrum. Fuga eos
+        nulla iusto quis vitae corporis repellendus accusamus. Exercitationem
+        autem, tempore aliquam sequi ratione, mollitia fugiat dolorem possimus
+        placeat, nesciunt voluptatibus voluptatum praesentium doloremque ex.
+      </p>
+    </div>
     <button (click)="editarViaje(viaje)" mat-button>Editar</button>
     <button (click)="borrarViaje(viaje.id)" mat-button color="warn">
       Borrar
     </button>
   </div>
-</ng-container>
+</div>

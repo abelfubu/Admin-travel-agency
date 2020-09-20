@@ -35,6 +35,11 @@
     [editable]="true"
     (newRating)="setRating($event)"
   ></app-rating>
+  <mat-select formControlName="estado">
+    <mat-option *ngFor="let estado of estados" [value]="estado.value">
+      {{ estado.text }}
+    </mat-option>
+  </mat-select>
   <mat-dialog-actions>
     <button mat-button>Enviar</button>
     <button mat-button color="warn" [mat-dialog-close]>Cancelar</button>
