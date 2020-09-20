@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   EventEmitter,
   Input,
@@ -17,7 +18,7 @@ import { Viaje } from 'src/app/models';
   templateUrl: './viajes-tabla.component.html',
   styleUrls: ['./viajes-tabla.component.scss'],
 })
-export class ViajesTablaComponent implements OnInit {
+export class ViajesTablaComponent implements AfterViewInit {
   displayedColumns: string[] = [
     'nombre',
     'destino',
@@ -31,8 +32,6 @@ export class ViajesTablaComponent implements OnInit {
   dataSource: MatTableDataSource<Viaje>;
   @Input() set viajesList(value: Viaje[]) {
     this.dataSource = new MatTableDataSource<Viaje>(value);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   @Output() mostrar = new EventEmitter<number>();
@@ -41,5 +40,8 @@ export class ViajesTablaComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 }
