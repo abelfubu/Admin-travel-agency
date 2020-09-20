@@ -16,6 +16,7 @@ export class ViajesListComponent implements OnInit, OnDestroy {
   viajesFiltered: Viaje[];
   viajesList: Viaje[];
   viajesSub: Subscription;
+  loading = true;
   constructor(
     private vs: ViajesService,
     private vui: ViajesUIService,
@@ -28,6 +29,7 @@ export class ViajesListComponent implements OnInit, OnDestroy {
     this.viajesSub = this.vs.viajes.subscribe((viajes: Viaje[]) => {
       this.viajesFiltered = viajes;
       this.viajesList = viajes;
+      this.loading = false;
     });
   }
 
