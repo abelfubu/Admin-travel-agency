@@ -12,7 +12,7 @@ export class ViajesService {
 
   getAll(): void {
     this.http
-      .get<Viaje[]>(this.url)
+      .get<Viaje[]>(this.url + 'special')
       .pipe(map((viajes) => viajes.map((viaje) => new Viaje(viaje))))
       .subscribe((response) => this.viajes.next(response));
   }

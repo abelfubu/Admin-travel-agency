@@ -1,5 +1,5 @@
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
 
@@ -15,6 +15,8 @@ import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { AsideComponent } from './common/aside/aside.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthInterceptor } from './auth.interceptor';
+import { AuthGuard } from './auth/auth.guard';
 
 registerLocaleData(localeEs);
 
@@ -35,7 +37,11 @@ registerLocaleData(localeEs);
     ReactiveFormsModule,
     BrowserAnimationsModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'es' }],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'es' },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    AuthGuard,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

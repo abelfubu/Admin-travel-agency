@@ -3,8 +3,15 @@
     <span routerLink="/"><mat-icon>flight_takeoff</mat-icon> Viajes</span>
   </div>
   <div class="nav">
-    <span (click)="nuevoViaje()"><mat-icon>create</mat-icon> Nuevo</span>
+    <span *ngIf="authService.isLoggedIn()" (click)="nuevoViaje()"
+      ><mat-icon>create</mat-icon> Nuevo</span
+    >
     <span><mat-icon>contact_support</mat-icon> About</span>
-    <span routerLink="auth/login"><mat-icon>face</mat-icon> Login</span>
+    <span *ngIf="authService.isLoggedIn()" (click)="authService.logout()"
+      ><mat-icon>eject</mat-icon> Logout</span
+    >
+    <span *ngIf="!authService.isLoggedIn()" routerLink="auth/login"
+      ><mat-icon>face</mat-icon> Login</span
+    >
   </div>
 </header>
