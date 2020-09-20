@@ -1,4 +1,5 @@
 <app-viajes-filter (filterResult)="filterList($event)"></app-viajes-filter>
+<app-logo *ngIf="loading"></app-logo>
 <app-viajes-tabla
   [viajesList]="viajesFiltered"
   (mostrar)="mostrarViaje($event)"
