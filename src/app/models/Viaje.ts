@@ -1,5 +1,5 @@
 export class Viaje {
-  id: number;
+  id: string;
   color: string;
   destino: string;
   duracion: number;
@@ -11,9 +11,9 @@ export class Viaje {
   tipo: string;
 
   constructor(item?: any) {
-    this.id = item.id;
+    this.id = item?.id;
     this.color = item?.color || '#000';
-    this.destino = item.destino;
+    this.destino = item?.destino;
     this.duracion = item.duracion || 0;
     this.estado = item?.estado || 1;
     this.img = item.img;

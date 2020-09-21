@@ -3,7 +3,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
@@ -32,6 +31,8 @@ export class ViajesTablaComponent implements AfterViewInit {
   dataSource: MatTableDataSource<Viaje>;
   @Input() set viajesList(value: Viaje[]) {
     this.dataSource = new MatTableDataSource<Viaje>(value);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   @Output() mostrar = new EventEmitter<number>();

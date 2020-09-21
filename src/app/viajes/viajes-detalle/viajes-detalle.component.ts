@@ -37,6 +37,7 @@ export class ViajesDetalleComponent implements OnInit {
   cargarViaje(): void {
     this.route.params.subscribe((param) => {
       this.vs.getOne(param.id).subscribe((response) => {
+        console.log(response);
         this.viaje = response;
       });
     });

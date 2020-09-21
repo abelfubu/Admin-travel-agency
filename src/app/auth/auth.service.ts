@@ -29,7 +29,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('/');
     this.vui.snackBarUI('Hasta la próxima!');
   }
 

@@ -10,7 +10,7 @@ export class AuthGuard implements CanLoad {
   canLoad(route: Route, segments: UrlSegment[]): boolean {
     const isAuth = this.authService.isLoggedIn();
     if (!isAuth) {
-      this.router.navigate(['']);
+      this.router.navigate(['/']);
     }
     return isAuth;
   }
