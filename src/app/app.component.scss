@@ -1,25 +1,32 @@
 main {
-  min-height: 60vh;
+  // min-height: 60vh;
   margin: 72px auto 0;
-}
-app-aside {
-  min-height: 90vh;
-  margin: 72px auto 0 22px;
+  padding: 2px 0;
 }
 
 .panel {
   border-radius: 6px;
   width: 95%;
+  // min-height: 100%;
   background-color: #23232322;
 }
 
 section {
   display: grid;
-  grid-template-columns: 300px auto;
+  grid-template-columns: 225px auto;
 }
 
 @media (max-width: 700px) {
   section {
     display: block;
+  }
+
+  main {
+    margin-top: 16px;
+  }
+
+  .panel {
+    width: 100%;
+    height: 100%;
   }
 }

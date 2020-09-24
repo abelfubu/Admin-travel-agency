@@ -24,6 +24,16 @@ header {
     }
   }
 
+  a {
+    padding: 0 12px;
+    text-decoration: none;
+    color: #232323;
+
+    &:hover {
+      color: rgb(87, 127, 212);
+    }
+  }
+
   .nav {
     span:not(:last-child) {
       margin-right: 16px;

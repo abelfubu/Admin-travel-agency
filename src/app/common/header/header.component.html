@@ -6,7 +6,9 @@
     <span *ngIf="authService.isLoggedIn()" (click)="nuevoViaje()"
       ><mat-icon>create</mat-icon> Nuevo</span
     >
-    <span><mat-icon>contact_support</mat-icon> About</span>
+    <a href="https://abelfubu.github.io/abelfubu-profile/" target="_blank"
+      ><mat-icon>contact_support</mat-icon> About</a
+    >
     <span *ngIf="authService.isLoggedIn()" (click)="authService.logout()"
       ><mat-icon>eject</mat-icon> Logout</span
     >
