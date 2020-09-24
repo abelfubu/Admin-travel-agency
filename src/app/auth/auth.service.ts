@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { User } from '../models';
+import { LoaderService } from '../services/loader.service';
 import { ViajesUIService } from '../viajes/viajes-ui.service';
 
 @Injectable({
@@ -13,15 +14,18 @@ import { ViajesUIService } from '../viajes/viajes-ui.service';
 export class AuthService {
   url = 'https://api-coches.herokuapp.com/auth/login';
   constructor(
+    private router: Router,
     private http: HttpClient,
     private vui: ViajesUIService,
-    private router: Router
+    private loaderService: LoaderService
   ) {}
 
   login(credentials: User): Observable<string> {
+    this.loaderService.showLoading();
     return this.http.post<string>(this.url, credentials).pipe(
       map((response) => {
         this.saveToken(response);
+        this.loaderService.hideLoading();
         return response;
       })
     );

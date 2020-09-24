@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+
+import { LoaderService } from 'src/app/services/loader.service';
 import { Viaje } from '../../models';
 import { ViajesFormComponent } from '../viajes-form/viajes-form.component';
 import { ViajesUIService } from '../viajes-ui.service';
@@ -15,21 +17,29 @@ import { ViajesService } from '../viajes.service';
 export class ViajesListComponent implements OnInit, OnDestroy {
   viajesFiltered: Viaje[];
   viajesList: Viaje[];
-  viajesSub: Subscription;
-  loading = true;
+  dialogRef: Subscription;
+
   constructor(
+    private route: Router,
+    private dialog: MatDialog,
     private vs: ViajesService,
     private vui: ViajesUIService,
-    private route: Router,
-    private dialog: MatDialog
+    private loaderService: LoaderService
   ) {}
 
   ngOnInit(): void {
-    this.vs.getAll();
-    this.viajesSub = this.vs.viajes.subscribe((viajes: Viaje[]) => {
+    this.loadViajes();
+    this.dialogRef = this.dialog.afterAllClosed.subscribe(() =>
+      this.loadViajes()
+    );
+  }
+
+  private loadViajes(): void {
+    this.loaderService.showLoading();
+    this.vs.getAll().subscribe((viajes: Viaje[]) => {
       this.viajesFiltered = viajes;
       this.viajesList = viajes;
-      this.loading = false;
+      this.loaderService.hideLoading();
     });
   }
 
@@ -59,12 +69,10 @@ export class ViajesListComponent implements OnInit, OnDestroy {
 
   borrarViaje(id: number): void {
     this.vui.confirmUI().subscribe((confirmation) => {
-      if (confirmation) {
-        this.vs.deleteOne(id).subscribe((response) => {
-          this.vs.getAll();
-          this.vui.snackBarUI('Viaje Borrado');
-        });
-      }
+      if (!confirmation) return;
+      this.vs.deleteOne(id).subscribe(() => {
+        this.vui.snackBarUI('Viaje Borrado');
+      });
     });
   }
 
@@ -73,6 +81,6 @@ export class ViajesListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.viajesSub.unsubscribe();
+    this.dialogRef.unsubscribe();
   }
 }

@@ -1,20 +1,27 @@
 :host {
   width: 100%;
   height: 100%;
-  display: grid;
-  place-items: center;
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-img {
-  width: 300px;
-  animation: rotate infinite linear 6s;
+  img {
+    top: 300px;
+    position: absolute;
+    width: 200px;
+    z-index: 10;
+    animation: rotate infinite linear 6s;
+  }
 }
 
 @keyframes rotate {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotate(360deg) scale(1);
   }
 }
