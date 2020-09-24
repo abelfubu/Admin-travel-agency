@@ -2,6 +2,13 @@
 
 Proyecto generado durante el apartado de angular del curso de Fullstack web developer
 
+[Échale un ojo al proyecto final!](https://abelfubu.github.io/admin-travel-agency/)
+
+### Credenciales
+
+- email: test@test.com
+- password: 123
+
 ### Objetivos
 
 - Aprender conceptos básicos de composición de aplicaciones con angular
