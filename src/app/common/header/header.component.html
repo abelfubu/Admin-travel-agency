@@ -1,6 +1,6 @@
 <header appScroll>
   <div class="logo">
-    <span routerLink="/"><mat-icon>flight_takeoff</mat-icon> Viajes</span>
+    <span routerLink="/viajes"><mat-icon>flight_takeoff</mat-icon> Viajes</span>
   </div>
   <div class="nav">
     <span *ngIf="authService.isLoggedIn()" (click)="nuevoViaje()"
