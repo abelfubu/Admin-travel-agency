@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Viaje } from '../../models';
 import { ViajesUIService } from '../viajes-ui.service';
 import { ViajesService } from '../viajes.service';
@@ -21,9 +22,10 @@ export class ViajesFormComponent implements OnInit {
   ];
   constructor(
     fb: FormBuilder,
+    private router: Router,
     private vs: ViajesService,
-    private vui: ViajesUIService,
     private dialog: MatDialog,
+    private vui: ViajesUIService,
     @Inject(MAT_DIALOG_DATA) private passedData: { viaje: Viaje }
   ) {
     this.form = fb.group({
@@ -58,7 +60,6 @@ export class ViajesFormComponent implements OnInit {
       this.vs.updateOne({ ...this.form.value, id, color }).subscribe(() => {
         this.dialog.closeAll();
         this.vui.snackBarUI('Viaje actualizado');
-        this.vs.getAll();
       });
     } else {
       this.vs
@@ -69,7 +70,6 @@ export class ViajesFormComponent implements OnInit {
         .subscribe(() => {
           this.dialog.closeAll();
           this.vui.snackBarUI('Viaje creado con éxito');
-          this.vs.getAll();
         });
     }
   }

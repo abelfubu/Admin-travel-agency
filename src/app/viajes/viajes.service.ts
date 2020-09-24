@@ -7,14 +7,13 @@ import { Viaje } from '../models/Viaje';
 @Injectable({ providedIn: 'root' })
 export class ViajesService {
   url = 'https://api-coches.herokuapp.com/viajes/';
-  viajes = new Subject();
+
   constructor(private http: HttpClient) {}
 
-  getAll(): void {
-    this.http
+  getAll(): Observable<Viaje[]> {
+    return this.http
       .get<Viaje[]>(this.url + 'special')
-      .pipe(map((viajes) => viajes.map((viaje) => new Viaje(viaje))))
-      .subscribe((response) => this.viajes.next(response));
+      .pipe(map((viajes) => viajes.map((viaje) => new Viaje(viaje))));
   }
 
   getOne(id: number): Observable<Viaje> {

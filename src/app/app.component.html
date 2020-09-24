@@ -3,6 +3,7 @@
 <section>
   <app-aside class="panel"></app-aside>
   <main class="panel">
+    <app-logo *ngIf="loading"></app-logo>
     <router-outlet></router-outlet>
   </main>
 </section>

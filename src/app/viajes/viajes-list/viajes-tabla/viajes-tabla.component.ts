@@ -6,6 +6,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { fly } from '../../../common/animation';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -16,6 +17,7 @@ import { Viaje } from 'src/app/models';
   selector: 'app-viajes-tabla',
   templateUrl: './viajes-tabla.component.html',
   styleUrls: ['./viajes-tabla.component.scss'],
+  animations: [fly],
 })
 export class ViajesTablaComponent implements AfterViewInit {
   displayedColumns: string[] = [
