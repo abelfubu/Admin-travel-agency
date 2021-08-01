@@ -6,7 +6,7 @@ import { Viaje } from '../models/Viaje';
 
 @Injectable({ providedIn: 'root' })
 export class ViajesService {
-  url = 'https://api-coches.herokuapp.com/viajes/';
+  url = 'https://api-coches.herokuapp.com/travels/';
 
   constructor(private http: HttpClient) {}
 
